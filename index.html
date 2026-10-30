@@ -1,444 +1,342 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f7faf7">
-  <title>AVERO STUDIO — Создание сайтов</title>
-  <meta name="description" content="AVERO STUDIO — создание современных сайтов для бизнеса, проектов и личных брендов.">
+  <meta name="description" content="AVERO STUDIO — современные сайты для бизнеса, проектов и личных брендов. Дизайн, разработка и адаптация под мобильные устройства.">
+  <title>AVERO STUDIO — Создание современных сайтов</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --bg: #f8faf8;
+      --surface: #ffffff;
+      --ink: #17251d;
+      --muted: #68766d;
+      --green: #477f59;
+      --green-dark: #356947;
+      --green-soft: #e8f4e9;
+      --green-line: #dfeae1;
+      --mint: #b9d9c0;
+      --shadow: 0 22px 60px rgba(39, 75, 48, .09);
     }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
     body {
-      font-family: Arial, sans-serif;
-      color: #17251d;
-      background: #f8faf8;
-      line-height: 1.6;
+      font-family: "DM Sans", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 85% 8%, rgba(185,225,195,.2), transparent 27rem),
+        var(--bg);
+      line-height: 1.65;
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(1160px, 90%); margin: auto; }
+    .site-header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(248,250,248,.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(223,234,225,.85);
     }
-
-    .container {
-      width: min(1120px, 90%);
-      margin: auto;
+    nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .logo { font-size: 19px; font-weight: 800; letter-spacing: 2.4px; white-space: nowrap; }
+    .logo span { color: var(--green); }
+    .nav-links { display: flex; align-items: center; gap: 30px; color: #65736a; font-size: 13px; font-weight: 600; }
+    .nav-links a { transition: color .2s; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta, .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 13px 21px; border-radius: 12px; background: var(--green);
+      color: white; font-size: 14px; font-weight: 700; transition: .22s;
+      box-shadow: 0 8px 20px rgba(71,127,89,.16);
     }
-
-    header {
-      padding: 24px 0;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(248, 250, 248, 0.88);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid #e8eee9;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .logo {
-      font-size: 21px;
-      font-weight: 800;
-      letter-spacing: 2px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      font-size: 14px;
-      color: #617067;
-    }
-
-    .nav-links a:hover {
-      color: #39875b;
-    }
-
-    .hero {
-      padding: 110px 0 100px;
-      position: relative;
-      overflow: hidden;
-    }
-
+    .nav-cta:hover, .button:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .hero { padding: 92px 0 86px; position: relative; overflow: hidden; }
     .hero::before {
-      content: "";
-      position: absolute;
-      width: 430px;
-      height: 430px;
-      border-radius: 50%;
-      background: rgba(166, 220, 180, 0.22);
-      filter: blur(75px);
-      right: -120px;
-      top: 10px;
-      z-index: -1;
+      content: ""; position: absolute; width: 500px; height: 500px; right: -170px; top: -70px;
+      border-radius: 50%; background: rgba(166,220,180,.28); filter: blur(85px); pointer-events: none;
     }
-
-    .tag {
-      display: inline-block;
-      padding: 8px 15px;
-      border-radius: 30px;
-      background: rgba(185, 225, 195, 0.28);
-      color: #43865b;
-      font-size: 13px;
-      margin-bottom: 24px;
+    .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 58px; align-items: center; position: relative; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; padding: 8px 13px;
+      border-radius: 30px; background: rgba(185,225,195,.3); color: #43865b;
+      font-size: 12px; font-weight: 700; letter-spacing: .5px; margin-bottom: 24px;
     }
-
-    h1 {
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 1.08;
-      letter-spacing: -3px;
-      max-width: 850px;
-      margin-bottom: 24px;
+    .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #6da77b; }
+    h1 { font-size: clamp(43px, 6vw, 70px); line-height: 1.06; letter-spacing: -3.5px; max-width: 690px; margin-bottom: 23px; }
+    h1 span { color: #5c9b70; }
+    .hero-copy { max-width: 550px; color: var(--muted); font-size: 16px; margin-bottom: 30px; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 17px; }
+    .text-link { color: var(--green); font-size: 14px; font-weight: 700; }
+    .text-link:hover { color: var(--green-dark); }
+    .hero-note { margin-top: 27px; color: #87928a; font-size: 12px; }
+    .preview-wrap { position: relative; padding: 15px; }
+    .preview-glow { position: absolute; inset: 12% 4%; background: #cfe7d2; filter: blur(55px); opacity: .7; }
+    .browser {
+      position: relative; background: rgba(255,255,255,.9); border: 1px solid #e2ebe3;
+      border-radius: 22px; overflow: hidden; box-shadow: var(--shadow); transform: rotate(1.5deg);
     }
-
-    h1 span {
-      color: #5c9b70;
-    }
-
-    .hero p {
-      max-width: 570px;
-      color: #68766d;
-      font-size: 17px;
-      margin-bottom: 34px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 15px 25px;
-      background: #477f59;
-      color: white;
-      border-radius: 12px;
-      font-weight: 600;
-      transition: 0.2s;
-    }
-
-    .button:hover {
-      background: #356947;
-      transform: translateY(-2px);
-    }
-
-    .section {
-      padding: 85px 0;
-    }
-
-    .section-label {
-      color: #59936b;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      font-size: clamp(30px, 5vw, 46px);
-      line-height: 1.15;
-      letter-spacing: -1.5px;
-      margin-bottom: 18px;
-    }
-
-    .section-intro {
-      color: #718077;
-      max-width: 580px;
-      margin-bottom: 38px;
-    }
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
+    .browser-top { height: 43px; display: flex; align-items: center; gap: 6px; padding: 0 16px; border-bottom: 1px solid #edf1ed; }
+    .browser-dot { width: 7px; height: 7px; border-radius: 50%; background: #c7d8ca; }
+    .browser-address { margin-left: 8px; color: #9aa59c; font-size: 10px; }
+    .preview-content { padding: 28px; }
+    .preview-label { color: #699a75; font-size: 9px; font-weight: 800; letter-spacing: 2px; }
+    .preview-title { max-width: 280px; font-size: clamp(25px, 3vw, 36px); line-height: 1.08; letter-spacing: -1.4px; margin: 13px 0; }
+    .preview-desc { color: #7a877e; font-size: 11px; max-width: 250px; }
+    .preview-button { display: inline-block; background: #477f59; color: white; padding: 9px 13px; border-radius: 7px; font-size: 9px; margin-top: 18px; }
+    .preview-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 25px; }
+    .preview-tile { height: 86px; border-radius: 10px; background: linear-gradient(135deg,#e8f4e9,#f5f8f4); border: 1px solid #e5eee6; padding: 12px; }
+    .preview-tile:nth-child(2) { background: linear-gradient(135deg,#f1f6ef,#dceede); }
+    .tile-line { height: 5px; width: 55%; border-radius: 5px; background: #b8d5bd; margin-bottom: 8px; }
+    .tile-line.short { width: 34%; opacity: .65; }
+    .preview-caption { position: absolute; bottom: -4px; right: -2px; background: white; border: 1px solid #e4ece5; border-radius: 12px; padding: 11px 15px; box-shadow: 0 10px 30px rgba(39,75,48,.08); font-size: 11px; color: #68766d; }
+    .preview-caption strong { display: block; color: var(--ink); font-size: 13px; }
+    .trust-strip { border-top: 1px solid var(--green-line); border-bottom: 1px solid var(--green-line); background: rgba(255,255,255,.45); }
+    .trust-grid { display: grid; grid-template-columns: repeat(3,1fr); padding: 22px 0; gap: 20px; }
+    .trust-item { display: flex; align-items: center; justify-content: center; gap: 11px; color: #68766d; font-size: 12px; font-weight: 600; }
+    .trust-icon { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 9px; background: var(--green-soft); color: var(--green); font-size: 14px; }
+    .section { padding: 92px 0; }
+    .section-head { max-width: 660px; margin-bottom: 39px; }
+    .section-label { color: #59936b; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+    h2 { font-size: clamp(31px, 4.5vw, 46px); line-height: 1.14; letter-spacing: -1.9px; margin-bottom: 15px; }
+    .section-intro { color: #718077; font-size: 15px; max-width: 590px; }
+    .services { display: grid; grid-template-columns: repeat(3,1fr); gap: 17px; }
     .service-card {
-      padding: 30px;
-      border: 1px solid #e5ece6;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.75);
-      transition: 0.25s;
+      position: relative; padding: 27px; border: 1px solid #e4ece5; border-radius: 18px;
+      background: rgba(255,255,255,.82); transition: .25s; overflow: hidden;
     }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-      border-color: #b9d9c0;
-      box-shadow: 0 15px 35px rgba(54, 100, 67, 0.07);
+    .service-card::after { content: ""; position: absolute; width: 100px; height: 100px; right: -45px; bottom: -50px; border-radius: 50%; background: #edf6ee; transition: .25s; }
+    .service-card:hover { transform: translateY(-5px); border-color: #bad8c0; box-shadow: 0 16px 38px rgba(54,100,67,.07); }
+    .service-card:hover::after { transform: scale(1.4); }
+    .service-number { color: #70a780; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 25px; }
+    .service-symbol { width: 43px; height: 43px; display: grid; place-items: center; border-radius: 13px; background: var(--green-soft); color: var(--green); font-size: 19px; margin-bottom: 19px; }
+    .service-card h3 { font-size: 19px; margin-bottom: 9px; }
+    .service-card p { color: #718077; font-size: 13px; min-height: 66px; }
+    .service-meta { display: inline-block; margin-top: 20px; color: #568665; font-size: 11px; font-weight: 700; }
+    .features-section { background: #f0f6f0; border-top: 1px solid #e6efe7; border-bottom: 1px solid #e6efe7; }
+    .features-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: start; }
+    .features-intro { color: #718077; font-size: 14px; margin-top: 20px; }
+    .feature-list { display: grid; gap: 12px; }
+    .feature { display: flex; gap: 16px; padding: 19px; border: 1px solid #e1ebe2; border-radius: 15px; background: rgba(255,255,255,.72); }
+    .feature-check { flex: 0 0 29px; width: 29px; height: 29px; border-radius: 9px; display: grid; place-items: center; background: #e5f2e7; color: #4c895f; font-weight: 800; }
+    .feature h3 { font-size: 15px; margin-bottom: 3px; }
+    .feature p { color: #748178; font-size: 12px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 55px; align-items: center; }
+    .about-text { color: #68766d; font-size: 14px; }
+    .about-panel { padding: 34px; border-radius: 22px; background: linear-gradient(135deg,#e8f4e9,#f4f8f3); border: 1px solid #e0ede1; }
+    .about-panel-top { color: #59936b; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 17px; }
+    .about-panel strong { display: block; font-size: 23px; line-height: 1.25; letter-spacing: -.7px; margin-bottom: 12px; }
+    .about-panel p { color: #68766d; font-size: 13px; }
+    .about-points { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 25px; }
+    .about-point { padding-top: 12px; border-top: 1px solid #cfe1d1; color: #587763; font-size: 11px; font-weight: 700; }
+    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; counter-reset: step; }
+    .step { padding: 25px; border: 1px solid #e4ece5; border-radius: 17px; background: white; }
+    .step-number { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--green-soft); color: var(--green); font-size: 12px; font-weight: 800; }
+    .step h3 { margin: 17px 0 7px; font-size: 17px; }
+    .step p { color: #718077; font-size: 13px; }
+    .faq-wrap { display: grid; grid-template-columns: .75fr 1.25fr; gap: 55px; }
+    .faq-list { display: grid; gap: 10px; }
+    details { border: 1px solid #e3ebe4; border-radius: 13px; background: rgba(255,255,255,.78); padding: 17px 19px; }
+    summary { cursor: pointer; list-style: none; font-size: 13px; font-weight: 700; display: flex; justify-content: space-between; gap: 15px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--green); font-size: 18px; line-height: 1; }
+    details[open] summary::after { content: "−"; }
+    details p { color: #718077; font-size: 12px; margin-top: 12px; padding-right: 20px; }
+    .contact { text-align: center; padding: 70px 30px; border-radius: 26px; background: linear-gradient(135deg,#e8f4e9,#f4f8f3); border: 1px solid #dfece0; position: relative; overflow: hidden; }
+    .contact::before,.contact::after { content: ""; position: absolute; border-radius: 50%; border: 1px solid rgba(104,159,117,.18); width: 240px; height: 240px; }
+    .contact::before { top: -150px; left: -90px; }
+    .contact::after { bottom: -170px; right: -90px; width: 300px; height: 300px; }
+    .contact-content { position: relative; z-index: 1; }
+    .contact p { color: #68766d; max-width: 500px; margin: 0 auto 25px; font-size: 14px; }
+    .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 11px; }
+    .contact-links a { padding: 12px 21px; border: 1px solid #c8ddcc; background: rgba(255,255,255,.7); border-radius: 11px; font-size: 13px; font-weight: 700; transition: .2s; }
+    .contact-links a:hover { background: white; border-color: #75a985; transform: translateY(-2px); }
+    footer { padding: 28px 0; color: #87928a; font-size: 11px; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .footer-brand { color: #53645a; font-weight: 800; letter-spacing: 1.8px; }
+    .footer-top { color: #5c8d69; font-weight: 700; }
+    @media (max-width: 850px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 35px; }
+      .preview-wrap { max-width: 520px; width: 100%; margin: 0 auto; }
+      .features-grid,.faq-wrap { grid-template-columns: 1fr; gap: 28px; }
+      .features-intro { margin-top: 0; }
     }
-
-    .service-number {
-      color: #70a780;
-      font-size: 14px;
-      margin-bottom: 25px;
+    @media (max-width: 700px) {
+      nav { min-height: 68px; }
+      .nav-links { gap: 15px; font-size: 11px; }
+      .nav-cta { display: none; }
+      .hero { padding: 68px 0 58px; }
+      h1 { letter-spacing: -2.4px; }
+      .section { padding: 68px 0; }
+      .services,.steps { grid-template-columns: 1fr; }
+      .service-card p { min-height: auto; }
+      .about-grid { grid-template-columns: 1fr; gap: 25px; }
+      .trust-grid { gap: 9px; }
+      .trust-item { flex-direction: column; text-align: center; font-size: 10px; gap: 6px; }
+      .footer-inner { flex-direction: column; text-align: center; }
     }
-
-    .service-card h3 {
-      font-size: 21px;
-      margin-bottom: 12px;
-    }
-
-    .service-card p {
-      color: #718077;
-      font-size: 14px;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      align-items: center;
-    }
-
-    .about-panel {
-      padding: 38px;
-      border-radius: 24px;
-      background: linear-gradient(135deg, #e8f4e9, #f4f8f3);
-      border: 1px solid #e0ede1;
-    }
-
-    .about-panel strong {
-      display: block;
-      font-size: 25px;
-      margin-bottom: 12px;
-    }
-
-    .about-panel p,
-    .about-text {
-      color: #68766d;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .step {
-      border-top: 2px solid #b9d9c0;
-      padding-top: 20px;
-    }
-
-    .step small {
-      color: #59936b;
-      font-weight: 700;
-    }
-
-    .step h3 {
-      margin: 10px 0;
-      font-size: 19px;
-    }
-
-    .step p {
-      color: #718077;
-      font-size: 14px;
-    }
-
-    .contact {
-      text-align: center;
-      padding: 75px 30px;
-      border-radius: 28px;
-      background: linear-gradient(135deg, #e8f4e9, #f4f8f3);
-      border: 1px solid #e0ede1;
-    }
-
-    .contact p {
-      color: #68766d;
-      max-width: 500px;
-      margin: 0 auto 28px;
-    }
-
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .contact-links a {
-      padding: 13px 22px;
-      border: 1px solid #c8ddcc;
-      background: rgba(255,255,255,0.65);
-      border-radius: 12px;
-      font-weight: 600;
-      transition: 0.2s;
-    }
-
-    .contact-links a:hover {
-      background: white;
-      border-color: #75a985;
-    }
-
-    footer {
-      padding: 28px 0;
-      color: #87928a;
-      font-size: 13px;
-      text-align: center;
-    }
-
-    @media (max-width: 750px) {
-      .nav-links {
-        gap: 13px;
-        font-size: 12px;
-      }
-
-      .hero {
-        padding: 80px 0;
-      }
-
-      .services,
-      .steps,
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .about-grid {
-        gap: 25px;
-      }
-
-      .section {
-        padding: 65px 0;
-      }
-    }
-
     @media (max-width: 420px) {
-      .nav-links a:nth-child(2) {
-        display: none;
-      }
-
-      h1 {
-        letter-spacing: -2px;
-      }
+      .container { width: 91%; }
+      .nav-links { gap: 11px; font-size: 10px; }
+      .logo { font-size: 16px; letter-spacing: 1.7px; }
+      .hero-actions { align-items: flex-start; flex-direction: column; }
+      .preview-content { padding: 21px; }
+      .preview-caption { right: -5px; }
+      .contact { padding: 55px 18px; }
+      .about-points { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *,*::before,*::after { transition-duration: .01ms !important; }
     }
   </style>
 </head>
 <body>
-
-  <header>
+  <header class="site-header">
     <div class="container">
-      <nav>
-        <a class="logo" href="#">AVERO STUDIO</a>
+      <nav aria-label="Главная навигация">
+        <a class="logo" href="#top">AVERO <span>STUDIO</span></a>
         <div class="nav-links">
           <a href="#services">Услуги</a>
-          <a href="#about">О студии</a>
+          <a href="#about">Студия</a>
+          <a href="#process">Процесс</a>
           <a href="#contacts">Контакты</a>
         </div>
+        <a class="nav-cta" href="#contacts">Обсудить проект ↗</a>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main id="top">
     <section class="hero">
-      <div class="container">
-        <span class="tag">Веб-разработка · Дизайн · Современные решения</span>
-        <h1>Создаём сайты,<br>которые <span>выделяют</span></h1>
-        <p>
-          Разрабатываю современные и удобные сайты для бизнеса,
-          личных проектов и брендов. Продуманный дизайн,
-          понятная структура и адаптация под телефон.
-        </p>
-        <a class="button" href="#contacts">Обсудить проект ↗</a>
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">ВЕБ-ДИЗАЙН И РАЗРАБОТКА</div>
+          <h1>Сайты, которые <span>говорят</span> за ваш бренд.</h1>
+          <p class="hero-copy">Создаю современные сайты для бизнеса, личных проектов и новых идей. Продуманная структура, аккуратный дизайн и удобство на любом экране.</p>
+          <div class="hero-actions">
+            <a class="button" href="#contacts">Обсудить мой проект <span>↗</span></a>
+            <a class="text-link" href="#services">Посмотреть услуги ↓</a>
+          </div>
+          <p class="hero-note">От первой идеи до готовой страницы в интернете.</p>
+        </div>
+        <div class="preview-wrap" aria-label="Декоративный макет сайта">
+          <div class="preview-glow"></div>
+          <div class="browser">
+            <div class="browser-top"><i class="browser-dot"></i><i class="browser-dot"></i><i class="browser-dot"></i><span class="browser-address">your-project.site</span></div>
+            <div class="preview-content">
+              <div class="preview-label">YOUR BRAND · YOUR STORY</div>
+              <div class="preview-title">Идея, которой нужен свой сайт.</div>
+              <p class="preview-desc">Чистый дизайн. Понятная подача. Внимание к деталям.</p>
+              <span class="preview-button">Узнать больше ↗</span>
+              <div class="preview-bottom"><div class="preview-tile"><div class="tile-line"></div><div class="tile-line short"></div></div><div class="preview-tile"><div class="tile-line"></div><div class="tile-line short"></div></div></div>
+            </div>
+          </div>
+          <div class="preview-caption"><strong>AVERO STUDIO</strong>Визуальная концепция сайта</div>
+        </div>
       </div>
     </section>
 
+    <div class="trust-strip">
+      <div class="container trust-grid">
+        <div class="trust-item"><span class="trust-icon">✳</span>Индивидуальный подход</div>
+        <div class="trust-item"><span class="trust-icon">▣</span>Адаптация под телефон</div>
+        <div class="trust-item"><span class="trust-icon">↗</span>Понятная структура</div>
+      </div>
+    </div>
+
     <section class="section" id="services">
       <div class="container">
-        <div class="section-label">Что я предлагаю</div>
-        <h2>Услуги</h2>
-        <p class="section-intro">
-          Подбираю формат сайта под задачу проекта —
-          от простой страницы до полноценного представления бизнеса в интернете.
-        </p>
-
+        <div class="section-head">
+          <div class="section-label">ЧТО Я ДЕЛАЮ</div>
+          <h2>Формат под вашу задачу.</h2>
+          <p class="section-intro">Не каждый проект нуждается в сложном сайте. Подберём подходящий формат, чтобы посетителю было легко понять ваше предложение и связаться с вами.</p>
+        </div>
         <div class="services">
           <article class="service-card">
-            <div class="service-number">01 / BUSINESS</div>
+            <div class="service-number">01 / PRESENCE</div><div class="service-symbol">⌂</div>
             <h3>Сайт-визитка</h3>
-            <p>
-              Компактный сайт с информацией о вас, услугах
-              и контактами. Подходит специалистам и небольшим компаниям.
-            </p>
+            <p>Кратко и красиво рассказывает о вас, вашей деятельности, услугах и способах связи.</p>
+            <span class="service-meta">Для специалистов и небольших компаний</span>
           </article>
-
           <article class="service-card">
-            <div class="service-number">02 / LANDING</div>
+            <div class="service-number">02 / LANDING</div><div class="service-symbol">↗</div>
             <h3>Лендинг</h3>
-            <p>
-              Одностраничный сайт с акцентом на продукт,
-              предложение или конкретную услугу.
-            </p>
+            <p>Одна продуманная страница, которая последовательно раскрывает продукт или конкретное предложение.</p>
+            <span class="service-meta">Для услуг, продуктов и запусков</span>
           </article>
-
           <article class="service-card">
-            <div class="service-number">03 / PROJECT</div>
-            <h3>Сайт для проекта</h3>
-            <p>
-              Индивидуальная структура и оформление
-              для вашего проекта, идеи или бренда.
-            </p>
+            <div class="service-number">03 / PROJECT</div><div class="service-symbol">◇</div>
+            <h3>Сайт проекта</h3>
+            <p>Индивидуальная подача для идеи, сообщества, творческого проекта или личного бренда.</p>
+            <span class="service-meta">Для авторских идей и брендов</span>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section features-section">
+      <div class="container features-grid">
+        <div>
+          <div class="section-label">ВНИМАНИЕ К ДЕТАЛЯМ</div>
+          <h2>Хороший сайт — это больше, чем красивая картинка.</h2>
+          <p class="features-intro">Важны не только цвета и оформление. Продумываю, как человек будет пользоваться страницей и находить нужную информацию.</p>
+        </div>
+        <div class="feature-list">
+          <article class="feature"><span class="feature-check">✓</span><div><h3>Адаптивный интерфейс</h3><p>Страница подстраивается под смартфоны, планшеты и компьютеры.</p></div></article>
+          <article class="feature"><span class="feature-check">✓</span><div><h3>Понятная навигация</h3><p>Логичные разделы помогают быстро ориентироваться на сайте.</p></div></article>
+          <article class="feature"><span class="feature-check">✓</span><div><h3>Единый визуальный стиль</h3><p>Цвета, шрифты, кнопки и карточки работают как одна система.</p></div></article>
+          <article class="feature"><span class="feature-check">✓</span><div><h3>Контакты и важные ссылки</h3><p>Посетителю легко перейти к общению или нужному действию.</p></div></article>
         </div>
       </div>
     </section>
 
     <section class="section" id="about">
-      <div class="container">
-        <div class="about-grid">
-          <div>
-            <div class="section-label">О подходе</div>
-            <h2>Меньше лишнего.<br>Больше смысла.</h2>
-            <p class="about-text">
-              AVERO STUDIO — небольшая веб-студия, где внимание
-              уделяется каждой детали. Моя цель — сделать сайт,
-              который выглядит современно, быстро воспринимается
-              и помогает посетителю найти нужную информацию.
-            </p>
-          </div>
+      <div class="container about-grid">
+        <div>
+          <div class="section-label">О СТУДИИ</div>
+          <h2>Меньше лишнего. Больше смысла.</h2>
+          <p class="about-text">AVERO STUDIO — небольшая независимая веб-студия. В основе подхода — внимательное отношение к задаче, чистый визуальный язык и удобство для посетителя. Каждый проект начинается с понимания того, для кого создаётся сайт и какую задачу он должен решать.</p>
+        </div>
+        <div class="about-panel">
+          <div class="about-panel-top">ПРИНЦИП РАБОТЫ</div>
+          <strong>Ваш проект заслуживает продуманной подачи.</strong>
+          <p>Сначала разбираемся в идее и содержании, затем выстраиваем структуру и визуальное направление. Важные решения обсуждаются до финальной публикации.</p>
+          <div class="about-points"><div class="about-point">01 — Вникаю в задачу</div><div class="about-point">02 — Продумываю детали</div><div class="about-point">03 — Проверяю на экранах</div><div class="about-point">04 — Согласую результат</div></div>
+        </div>
+      </div>
+    </section>
 
-          <div class="about-panel">
-            <strong>Ваш проект — мой фокус.</strong>
-            <p>
-              Работа начинается с обсуждения идеи.
-              Затем подбираются стиль, структура и основные
-              элементы будущего сайта. Все решения согласуются
-              с заказчиком.
-            </p>
-          </div>
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">ПОНЯТНЫЙ ПРОЦЕСС</div>
+          <h2>От идеи к готовому сайту.</h2>
+          <p class="section-intro">Работа делится на последовательные этапы — так проще согласовывать направление и контролировать результат.</p>
+        </div>
+        <div class="steps">
+          <article class="step"><span class="step-number">01</span><h3>Знакомство и задача</h3><p>Обсуждаем цель сайта, аудиторию, нужные разделы и ваши пожелания.</p></article>
+          <article class="step"><span class="step-number">02</span><h3>Дизайн и разработка</h3><p>Подбираю визуальный стиль, собираю страницу и адаптирую её под разные устройства.</p></article>
+          <article class="step"><span class="step-number">03</span><h3>Проверка и запуск</h3><p>Проверяем ссылки, отображение и содержание, согласуем финальные изменения.</p></article>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="container">
-        <div class="section-label">Как проходит работа</div>
-        <h2>Три простых этапа</h2>
-        <div class="steps">
-          <div class="step">
-            <small>ЭТАП 01</small>
-            <h3>Обсуждение</h3>
-            <p>Уточняем задачу, пожелания и содержание сайта.</p>
-          </div>
-          <div class="step">
-            <small>ЭТАП 02</small>
-            <h3>Разработка</h3>
-            <p>Создаю дизайн и собираю сайт под согласованную задачу.</p>
-          </div>
-          <div class="step">
-            <small>ЭТАП 03</small>
-            <h3>Результат</h3>
-            <p>Проверяем готовую страницу и вносим согласованные правки.</p>
-          </div>
+      <div class="container faq-wrap">
+        <div>
+          <div class="section-label">ВОПРОСЫ И ОТВЕТЫ</div>
+          <h2>Перед началом работы.</h2>
+          <p class="section-intro">Несколько ответов, которые помогут понять, с чего начать.</p>
+        </div>
+        <div class="faq-list">
+          <details><summary>Что нужно, чтобы начать?</summary><p>Достаточно кратко описать идею и цель сайта. Если есть примеры дизайна, тексты или изображения — их можно обсудить отдельно.</p></details>
+          <details><summary>Сайт будет нормально открываться на телефоне?</summary><p>Да. Адаптация под мобильные устройства учитывается при разработке, а не добавляется в самом конце.</p></details>
+          <details><summary>Можно ли предложить свой дизайн?</summary><p>Конечно. Можно прислать референсы, цвета и примеры сайтов, которые вам нравятся. Это поможет точнее понять желаемое направление.</p></details>
+          <details><summary>Как узнать стоимость?</summary><p>Стоимость зависит от объёма, количества разделов и функций. Напишите о задаче — после обсуждения можно определить подходящий формат и оценить работу.</p></details>
         </div>
       </div>
     </section>
@@ -446,15 +344,14 @@
     <section class="section" id="contacts">
       <div class="container">
         <div class="contact">
-          <div class="section-label">Связаться со мной</div>
-          <h2>Есть идея для сайта?</h2>
-          <p>
-            Напишите мне — обсудим ваш проект,
-            пожелания к дизайну и возможный формат сайта.
-          </p>
-          <div class="contact-links">
-            <a href="https://t.me/zefut" target="_blank" rel="noopener">Telegram ↗</a>
-            <a href="https://wa.me/7706429086" target="_blank" rel="noopener">WhatsApp ↗</a>
+          <div class="contact-content">
+            <div class="section-label">ДАВАЙТЕ ОБСУДИМ</div>
+            <h2>Есть идея для сайта?</h2>
+            <p>Расскажите о проекте, пожеланиях и том, что вы хотите получить. Вместе определим подходящий формат.</p>
+            <div class="contact-links">
+              <a href="https://t.me/zefut" target="_blank" rel="noopener noreferrer">Написать в Telegram ↗</a>
+              <a href="https://wa.me/7706429086" target="_blank" rel="noopener noreferrer">Написать в WhatsApp ↗</a>
+            </div>
           </div>
         </div>
       </div>
@@ -462,9 +359,11 @@
   </main>
 
   <footer>
-    © 2026 AVERO STUDIO. Все права защищены.
+    <div class="container footer-inner">
+      <div class="footer-brand">AVERO STUDIO</div>
+      <div>© 2026 AVERO STUDIO. Все права защищены.</div>
+      <a class="footer-top" href="#top">Наверх ↑</a>
+    </div>
   </footer>
-
 </body>
-  </html>
-  
+</html>
