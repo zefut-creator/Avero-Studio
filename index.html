@@ -1,0 +1,470 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7faf7">
+  <title>AVERO STUDIO — Создание сайтов</title>
+  <meta name="description" content="AVERO STUDIO — создание современных сайтов для бизнеса, проектов и личных брендов.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #17251d;
+      background: #f8faf8;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      padding: 24px 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(248, 250, 248, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid #e8eee9;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      color: #617067;
+    }
+
+    .nav-links a:hover {
+      color: #39875b;
+    }
+
+    .hero {
+      padding: 110px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 430px;
+      height: 430px;
+      border-radius: 50%;
+      background: rgba(166, 220, 180, 0.22);
+      filter: blur(75px);
+      right: -120px;
+      top: 10px;
+      z-index: -1;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 30px;
+      background: rgba(185, 225, 195, 0.28);
+      color: #43865b;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      max-width: 850px;
+      margin-bottom: 24px;
+    }
+
+    h1 span {
+      color: #5c9b70;
+    }
+
+    .hero p {
+      max-width: 570px;
+      color: #68766d;
+      font-size: 17px;
+      margin-bottom: 34px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 15px 25px;
+      background: #477f59;
+      color: white;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      background: #356947;
+      transform: translateY(-2px);
+    }
+
+    .section {
+      padding: 85px 0;
+    }
+
+    .section-label {
+      color: #59936b;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin-bottom: 18px;
+    }
+
+    .section-intro {
+      color: #718077;
+      max-width: 580px;
+      margin-bottom: 38px;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      padding: 30px;
+      border: 1px solid #e5ece6;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.75);
+      transition: 0.25s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: #b9d9c0;
+      box-shadow: 0 15px 35px rgba(54, 100, 67, 0.07);
+    }
+
+    .service-number {
+      color: #70a780;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .service-card h3 {
+      font-size: 21px;
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      color: #718077;
+      font-size: 14px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-panel {
+      padding: 38px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #e8f4e9, #f4f8f3);
+      border: 1px solid #e0ede1;
+    }
+
+    .about-panel strong {
+      display: block;
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
+
+    .about-panel p,
+    .about-text {
+      color: #68766d;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step {
+      border-top: 2px solid #b9d9c0;
+      padding-top: 20px;
+    }
+
+    .step small {
+      color: #59936b;
+      font-weight: 700;
+    }
+
+    .step h3 {
+      margin: 10px 0;
+      font-size: 19px;
+    }
+
+    .step p {
+      color: #718077;
+      font-size: 14px;
+    }
+
+    .contact {
+      text-align: center;
+      padding: 75px 30px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #e8f4e9, #f4f8f3);
+      border: 1px solid #e0ede1;
+    }
+
+    .contact p {
+      color: #68766d;
+      max-width: 500px;
+      margin: 0 auto 28px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .contact-links a {
+      padding: 13px 22px;
+      border: 1px solid #c8ddcc;
+      background: rgba(255,255,255,0.65);
+      border-radius: 12px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .contact-links a:hover {
+      background: white;
+      border-color: #75a985;
+    }
+
+    footer {
+      padding: 28px 0;
+      color: #87928a;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 750px) {
+      .nav-links {
+        gap: 13px;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 80px 0;
+      }
+
+      .services,
+      .steps,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+        gap: 25px;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .nav-links a:nth-child(2) {
+        display: none;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a class="logo" href="#">AVERO STUDIO</a>
+        <div class="nav-links">
+          <a href="#services">Услуги</a>
+          <a href="#about">О студии</a>
+          <a href="#contacts">Контакты</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="tag">Веб-разработка · Дизайн · Современные решения</span>
+        <h1>Создаём сайты,<br>которые <span>выделяют</span></h1>
+        <p>
+          Разрабатываю современные и удобные сайты для бизнеса,
+          личных проектов и брендов. Продуманный дизайн,
+          понятная структура и адаптация под телефон.
+        </p>
+        <a class="button" href="#contacts">Обсудить проект ↗</a>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-label">Что я предлагаю</div>
+        <h2>Услуги</h2>
+        <p class="section-intro">
+          Подбираю формат сайта под задачу проекта —
+          от простой страницы до полноценного представления бизнеса в интернете.
+        </p>
+
+        <div class="services">
+          <article class="service-card">
+            <div class="service-number">01 / BUSINESS</div>
+            <h3>Сайт-визитка</h3>
+            <p>
+              Компактный сайт с информацией о вас, услугах
+              и контактами. Подходит специалистам и небольшим компаниям.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-number">02 / LANDING</div>
+            <h3>Лендинг</h3>
+            <p>
+              Одностраничный сайт с акцентом на продукт,
+              предложение или конкретную услугу.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-number">03 / PROJECT</div>
+            <h3>Сайт для проекта</h3>
+            <p>
+              Индивидуальная структура и оформление
+              для вашего проекта, идеи или бренда.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div>
+            <div class="section-label">О подходе</div>
+            <h2>Меньше лишнего.<br>Больше смысла.</h2>
+            <p class="about-text">
+              AVERO STUDIO — небольшая веб-студия, где внимание
+              уделяется каждой детали. Моя цель — сделать сайт,
+              который выглядит современно, быстро воспринимается
+              и помогает посетителю найти нужную информацию.
+            </p>
+          </div>
+
+          <div class="about-panel">
+            <strong>Ваш проект — мой фокус.</strong>
+            <p>
+              Работа начинается с обсуждения идеи.
+              Затем подбираются стиль, структура и основные
+              элементы будущего сайта. Все решения согласуются
+              с заказчиком.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-label">Как проходит работа</div>
+        <h2>Три простых этапа</h2>
+        <div class="steps">
+          <div class="step">
+            <small>ЭТАП 01</small>
+            <h3>Обсуждение</h3>
+            <p>Уточняем задачу, пожелания и содержание сайта.</p>
+          </div>
+          <div class="step">
+            <small>ЭТАП 02</small>
+            <h3>Разработка</h3>
+            <p>Создаю дизайн и собираю сайт под согласованную задачу.</p>
+          </div>
+          <div class="step">
+            <small>ЭТАП 03</small>
+            <h3>Результат</h3>
+            <p>Проверяем готовую страницу и вносим согласованные правки.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacts">
+      <div class="container">
+        <div class="contact">
+          <div class="section-label">Связаться со мной</div>
+          <h2>Есть идея для сайта?</h2>
+          <p>
+            Напишите мне — обсудим ваш проект,
+            пожелания к дизайну и возможный формат сайта.
+          </p>
+          <div class="contact-links">
+            <a href="https://t.me/zefut" target="_blank" rel="noopener">Telegram ↗</a>
+            <a href="https://wa.me/7706429086" target="_blank" rel="noopener">WhatsApp ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 AVERO STUDIO. Все права защищены.
+  </footer>
+
+</body>
+  </html>
+  
